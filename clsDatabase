@@ -1,0 +1,28 @@
+#DB
+import pymssql as sql
+
+server = 'IP주소'
+user = 'DB에 있는 사용자 이름'
+password = '사용자 PassWord'
+db = '접속시킬 Database 이름'
+
+conn = sql.connect(server=server, user=user, password=password, database=db, charset='utf8')
+
+def SelectQuery() : 
+    cursor = conn.cursor(as_dict=True)
+
+    cursor.execute(query)
+
+    cursor.close()
+
+
+def InsertQuery(query) :
+    cursor = conn.cursor()
+
+    cursor.execute(query)
+
+    cursor.close()
+    conn.commit()
+
+def ConnectionClose() : 
+    conn.close()
