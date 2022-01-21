@@ -1,0 +1,19 @@
+import DataToDB as db
+import pandas as pd
+
+csvData = pd.read_csv('KRW-BTC_df.csv')
+
+for i, rows in csvData.iterrows():
+    query = 'INSERT INTO TradingTest('
+    query += 'market, candle_date_time_utc, candle_date_time_kst, opening_price, high_price, '
+    query += 'low_price, trade_price, timestamp, candle_acc_trade_price, candle_acc_trade_volume, '
+    query += 'unit, gap, [check]) '
+    query += 'Values('
+    query += f"'{rows['market']}', '{rows['candle_date_time_utc']}', '{rows['candle_date_time_kst']}', {rows['opening_price']}, {rows['high_price']}, "
+    query += f"{rows['low_price']}, {rows['trade_price']}, {rows['timestamp']}, {rows['candle_acc_trade_price']}, {rows['candle_acc_trade_volume']}, "
+    query += f"{rows['unit']}, {rows['gap']}, '{rows['check']}') "
+
+    print(query)
+    db.InsertQuery(query)
+
+db.ConnectionClose()
