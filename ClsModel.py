@@ -30,6 +30,8 @@ def TrainModel(model, trainLearningData, trainResultData, testLearningData, test
     model.fit(trainLearningData, trainResultData, 
               epochs=3, validation_data=(testLearningData, testResultData))
 
+    return model
+
 
 #데이터 전처리
 def PreTrainData(table, resultColName, trainRate) :
@@ -39,9 +41,9 @@ def PreTrainData(table, resultColName, trainRate) :
              if type(rows[colFieldName]) == datetime.datetime :
                 rows[colFieldName] = rows[colFieldName].strftime('%Y%m%d%H%M')
              elif rows[colFieldName] == 'Up':
-                 rows[colFieldName] = 1
+                 rows[colFieldName] = 85112
              elif rows[colFieldName] == 'Down' : 
-                 rows[colFieldName] = 2
+                 rows[colFieldName] = 68111119110
     
     data = pd.DataFrame(table)
     data = data.convert_dtypes()
