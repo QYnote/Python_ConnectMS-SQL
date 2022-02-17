@@ -11,10 +11,10 @@ import datetime
 def CreateModel(Inputdata) :
     Input = tf.keras.layers.Input(shape=Inputdata.shape[1], name="Input")
     #Flatten = tf.keras.layers.Flatten(input_shape=int(trainLearningData.shape[0]), name="Flatten")
-    Dense1 = tf.keras.layers.Dense(64,  activation='relu', name="Dense1")(Input)
-    Dense2 = tf.keras.layers.Dense(256, activation='relu', name="Dense2")(Dense1)
-    Dense3 = tf.keras.layers.Dense(64,  activation='relu', name="Dense3")(Dense2)
-    Dense4 = tf.keras.layers.Dense(16,  activation='relu', name="Dense4")(Dense3)
+    Dense1 = tf.keras.layers.Dense(64,  activation='tanh', name="Dense1")(Input)
+    Dense2 = tf.keras.layers.Dense(256, activation='tanh', name="Dense2")(Dense1)
+    Dense3 = tf.keras.layers.Dense(64,  activation='tanh', name="Dense3")(Dense2)
+    Dense4 = tf.keras.layers.Dense(16,  activation='tanh', name="Dense4")(Dense3)
     Output = tf.keras.layers.Dense(1,   activation='softmax', name="Output")(Dense4)
 
     model = tf.keras.Model(inputs=Input, outputs=Output)
